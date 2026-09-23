@@ -1,3 +1,4 @@
+`src/styles/global.css` 전체 내용이에요. 기존 파일을 전체 지우고 이걸로 통째로 붙여넣으시면 됩니다.```css
 * {
     box-sizing: border-box;
 }
@@ -156,8 +157,9 @@ button {
 }
 
 .chat-box {
-    width: 300px;
-    height: 600px;
+    width: 100%;
+    max-width: 600px;
+    height: 420px;
     display: flex;
     flex-direction: column;
     background: white;
@@ -242,3 +244,5 @@ button {
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
+
+```
