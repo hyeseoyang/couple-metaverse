@@ -6,6 +6,7 @@ import { auth, db } from '../firebase/config';
 import { useAuth } from '../firebase/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import MainScene from '../game/MainScene';
+import ChatBox from './ChatBox';
 
 export default function CoupleRoom() {
     const { user, profile } = useAuth();
@@ -77,7 +78,13 @@ export default function CoupleRoom() {
                 </div>
             </header>
             <p className="hint">방향키 또는 WASD로 이동하세요</p>
-            <div ref={containerRef} className="game-container" />
+            <div className="room-layout">
+                <div ref={containerRef} className="game-container" />
+                {profile?.coupleId && (
+                    <ChatBox coupleId={profile.coupleId} myUid={user.uid} />
+                )}
+            </div>
         </div>
     );
 }
+

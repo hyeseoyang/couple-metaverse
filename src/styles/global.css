@@ -122,6 +122,82 @@ button {
         border-color: #3a2e2a;
     }
 
+.room-layout {
+    display: flex;
+    gap: 16px;
+    max-width: 1050px;
+    margin: 0 auto;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chat-box {
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-empty {
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.chat-bubble {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+    .chat-bubble.mine {
+        align-self: flex-end;
+        background: #4f8cff;
+        color: white;
+        border-bottom-right-radius: 4px;
+    }
+
+    .chat-bubble.theirs {
+        align-self: flex-start;
+        background: #fff0e9;
+        color: #3a2e2a;
+        border-bottom-left-radius: 4px;
+    }
+
+.chat-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #f0e5dd;
+}
+
+    .chat-input-row input {
+        flex: 1;
+        margin: 0;
+    }
+
+    .chat-input-row button {
+        padding: 8px 14px;
+    }
+
 .couple-room-page header {
     display: flex;
     justify-content: space-between;
