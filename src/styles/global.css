@@ -122,6 +122,29 @@ button {
         border-color: #3a2e2a;
     }
 
+.room-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 16px auto 4px;
+}
+
+.tab {
+    background: white;
+    color: #999;
+    border: 1px solid #e5d8cf;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+    .tab.active {
+        background: #ff8fab;
+        color: white;
+        border-color: #ff8fab;
+    }
+
 .room-layout {
     display: flex;
     gap: 16px;

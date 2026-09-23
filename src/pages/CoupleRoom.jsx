@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Phaser from 'phaser';
 import { signOut } from 'firebase/auth';
@@ -12,6 +12,7 @@ export default function CoupleRoom() {
     const { user, profile } = useAuth();
     const gameRef = useRef(null);
     const containerRef = useRef(null);
+    const [tab, setTab] = useState('room'); // 'room' | 'chat'
 
     useEffect(() => {
         let game;
@@ -77,14 +78,35 @@ export default function CoupleRoom() {
                     <button onClick={() => signOut(auth)}>로그아웃</button>
                 </div>
             </header>
-            <p className="hint">방향키 또는 WASD로 이동하세요</p>
+
+            <div className="room-tabs">
+                <button
+                    className={tab === 'room' ? 'tab active' : 'tab'}
+                    onClick={() => setTab('room')}
+                >
+                    🏠 우리 방
+                </button>
+                <button
+                    className={tab === 'chat' ? 'tab active' : 'tab'}
+                    onClick={() => setTab('chat')}
+                >
+                    💬 채팅
+                </button>
+            </div>
+
+            {tab === 'room' && <p className="hint">방향키 또는 WASD로 이동하세요</p>}
+
             <div className="room-layout">
-                <div ref={containerRef} className="game-container" />
-                {profile?.coupleId && (
+                {/* Phaser 게임은 탭을 바꿔도 유지되도록 언마운트하지 않고 CSS로만 숨김 */}
+                <div
+                    ref={containerRef}
+                    className="game-container"
+                    style={{ display: tab === 'room' ? 'block' : 'none' }}
+                />
+                {tab === 'chat' && profile?.coupleId && (
                     <ChatBox coupleId={profile.coupleId} myUid={user.uid} />
                 )}
             </div>
         </div>
     );
 }
-
