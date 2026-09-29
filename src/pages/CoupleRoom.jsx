@@ -7,6 +7,7 @@ import { useAuth } from '../firebase/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import MainScene from '../game/MainScene';
 import ChatBox from './ChatBox';
+import DateRecommend from './DateRecommend';
 
 export default function CoupleRoom() {
     const { user, profile } = useAuth();
@@ -92,6 +93,12 @@ export default function CoupleRoom() {
                 >
                     💬 채팅
                 </button>
+                <button
+                    className={tab === 'date' ? 'tab active' : 'tab'}
+                    onClick={() => setTab('date')}
+                >
+                    ✨ AI 데이트 추천
+                </button>
             </div>
 
             {tab === 'room' && <p className="hint">방향키 또는 WASD로 이동하세요</p>}
@@ -106,6 +113,7 @@ export default function CoupleRoom() {
                 {tab === 'chat' && profile?.coupleId && (
                     <ChatBox coupleId={profile.coupleId} myUid={user.uid} />
                 )}
+                {tab === 'date' && <DateRecommend />}
             </div>
         </div>
     );
