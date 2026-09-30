@@ -266,6 +266,52 @@ button {
         margin: 0;
     }
 
+.watch-together {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+}
+
+.watch-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+    .watch-form input {
+        flex: 1;
+        margin: 0;
+    }
+
+.watch-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .watch-player iframe,
+    .watch-player > div {
+        width: 100%;
+        height: 100%;
+    }
+
+.watch-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 14px;
+    pointer-events: none;
+}
+
 .couple-room-page header {
     display: flex;
     justify-content: space-between;

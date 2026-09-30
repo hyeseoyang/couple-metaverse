@@ -8,6 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import MainScene from '../game/MainScene';
 import ChatBox from './ChatBox';
 import DateRecommend from './DateRecommend';
+import WatchTogether from './WatchTogether';
 
 export default function CoupleRoom() {
     const { user, profile } = useAuth();
@@ -99,6 +100,12 @@ export default function CoupleRoom() {
                 >
                     ✨ AI 데이트 추천
                 </button>
+                <button
+                    className={tab === 'watch' ? 'tab active' : 'tab'}
+                    onClick={() => setTab('watch')}
+                >
+                    🎬 함께 시청
+                </button>
             </div>
 
             {tab === 'room' && <p className="hint">방향키 또는 WASD로 이동하세요</p>}
@@ -114,6 +121,9 @@ export default function CoupleRoom() {
                     <ChatBox coupleId={profile.coupleId} myUid={user.uid} />
                 )}
                 {tab === 'date' && <DateRecommend />}
+                {tab === 'watch' && profile?.coupleId && (
+                    <WatchTogether coupleId={profile.coupleId} myUid={user.uid} />
+                )}
             </div>
         </div>
     );
