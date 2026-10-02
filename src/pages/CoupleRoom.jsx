@@ -9,6 +9,7 @@ import MainScene from '../game/MainScene';
 import ChatBox from './ChatBox';
 import DateRecommend from './DateRecommend';
 import WatchTogether from './WatchTogether';
+import TouchControls from './TouchControls';
 
 export default function CoupleRoom() {
     const { user, profile } = useAuth();
@@ -42,12 +43,18 @@ export default function CoupleRoom() {
                 height: 600,
                 parent: containerRef.current,
                 backgroundColor: '#f3ead6',
+                scale: {
+                    mode: Phaser.Scale.FIT, // 화면이 좁으면 비율 유지한 채 자동 축소
+                    autoCenter: Phaser.Scale.CENTER_BOTH,
+                },
                 physics: {
                     default: 'arcade',
                     arcade: { debug: false },
                 },
                 scene: [MainScene],
             });
+
+            game.registry.set('virtualInput', { left: false, right: false, up: false, down: false });
 
             game.scene.start('MainScene', {
                 coupleId: profile.coupleId,
@@ -113,10 +120,12 @@ export default function CoupleRoom() {
             <div className="room-layout">
                 {/* Phaser 게임은 탭을 바꿔도 유지되도록 언마운트하지 않고 CSS로만 숨김 */}
                 <div
-                    ref={containerRef}
-                    className="game-container"
+                    className="game-wrapper"
                     style={{ display: tab === 'room' ? 'block' : 'none' }}
-                />
+                >
+                    <div ref={containerRef} className="game-container" />
+                    {tab === 'room' && <TouchControls gameRef={gameRef} />}
+                </div>
                 {tab === 'chat' && profile?.coupleId && (
                     <ChatBox coupleId={profile.coupleId} myUid={user.uid} />
                 )}

@@ -142,10 +142,13 @@ export default class MainScene extends Phaser.Scene {
         const body = this.myAvatar.body;
         body.setVelocity(0);
 
-        const left = this.cursors.left.isDown || this.wasd.A.isDown;
-        const right = this.cursors.right.isDown || this.wasd.D.isDown;
-        const up = this.cursors.up.isDown || this.wasd.W.isDown;
-        const down = this.cursors.down.isDown || this.wasd.S.isDown;
+        // 터치 기기의 가상 방향 버튼 입력 (TouchControls.jsx가 registry에 기록함)
+        const virtual = this.registry.get('virtualInput') || {};
+
+        const left = this.cursors.left.isDown || this.wasd.A.isDown || !!virtual.left;
+        const right = this.cursors.right.isDown || this.wasd.D.isDown || !!virtual.right;
+        const up = this.cursors.up.isDown || this.wasd.W.isDown || !!virtual.up;
+        const down = this.cursors.down.isDown || this.wasd.S.isDown || !!virtual.down;
 
         if (left) body.setVelocityX(-SPEED);
         else if (right) body.setVelocityX(SPEED);
